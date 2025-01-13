@@ -5,6 +5,7 @@ with st.echo():
     from selenium.webdriver.chrome.service import Service
     from webdriver_manager.chrome import ChromeDriverManager
     from webdriver_manager.core.os_manager import ChromeType
+    from selenium.webdriver.common.by import By
     from datetime import datetime
     import time
     import os
