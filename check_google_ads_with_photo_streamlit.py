@@ -91,6 +91,7 @@ with st.echo():
                 found = False
 
                 for ad in ads[:4]:  # 檢查前 4 個廣告
+                    st.write(ad)
                     _slot = ad.get_dom_attribute("data-ta-slot")
                     _pos = ad.get_dom_attribute("data-ta-slot-pos")
                     if site in ad.text:
