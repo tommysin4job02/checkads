@@ -13,6 +13,7 @@ with st.echo():
     
     @st.cache_resource
     def get_driver():
+        print("Getting Driver")
         return webdriver.Chrome(
             service=Service(
                 ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
