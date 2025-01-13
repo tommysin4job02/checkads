@@ -24,6 +24,13 @@ with st.echo():
         "deviceName": "iPhone X"  # 模擬 iPhone X 設備
     }
     
+    # 模擬位置
+    params = {
+        "latitude": 22.32706408602771,
+        "longitude": 114.17102541353952,
+        "accuracy": 100
+    }
+    
     # 檔案儲存設置
     result_file = "result.txt"
     screenshot_dir = "screenshots"
@@ -56,6 +63,7 @@ with st.echo():
     
     # 啟動瀏覽器
     driver = get_driver()
+    driver.execute_cdp_cmd("Page.setGeolocationOverride", params)
     base_url = "https://www.google.com/search?q="
     driver.get(base_url)
     
