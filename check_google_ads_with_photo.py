@@ -6,6 +6,7 @@ from datetime import datetime
 import time
 import os
 import json
+import shutil
 
 
 def google_ads_check_mobile(site_keywords, screenshot_dir="screenshots", result_file="results.txt"):
@@ -29,11 +30,14 @@ def google_ads_check_mobile(site_keywords, screenshot_dir="screenshots", result_
     chrome_service = Service("/Users/user/Desktop/chromedriver")  # 替換為 ChromeDriver 的實際路徑
 
     # 創建截圖文件夾
+    if os.path.exists(screenshot_dir):
+        shutil.rmtree(screenshot_dir)
+    
     os.makedirs(screenshot_dir, exist_ok=True)
 
     # 啟動瀏覽器
     driver = webdriver.Chrome(options=chrome_options)
-    base_url = "https://www.google.com/search?q="
+    base_url = "https://www.google.com/search?gl=hk&q="
 
     # 記錄檢查結果
     results = []
@@ -60,6 +64,9 @@ def google_ads_check_mobile(site_keywords, screenshot_dir="screenshots", result_
 
                 for ad in ads[:4]:  # 檢查前 4 個廣告
                     _slot = ad.get_dom_attribute("data-ta-slot")
+                    if _slot == 3:
+                        results.append(f"  關鍵字: {keyword} 沒有出現於首四個廣告內")
+                        print(f"  關鍵字: {keyword} 沒有出現於首四個廣告內")
                     _pos = ad.get_dom_attribute("data-ta-slot-pos")
                     if site in ad.text:
                         found = True
@@ -96,7 +103,7 @@ def google_ads_check_mobile(site_keywords, screenshot_dir="screenshots", result_
     driver.quit()
 
     # 將結果保存到文件
-    with open(result_file, "a", encoding="utf-8") as f:
+    with open(result_file, "w", encoding="utf-8") as f:
         f.write("\n".join(results) + "\n\n")
 
     print(f"檢查完成，結果已保存到 {result_file}")
