@@ -19,7 +19,6 @@ with st.echo():
             ),
             options=chrome_options,
         )
-    """模擬手機搜尋廣告，滾到廣告位置截圖"""
     # 手機模擬配置
     mobile_emulation = {
         "deviceName": "iPhone X"  # 模擬 iPhone X 設備
@@ -124,8 +123,3 @@ with st.echo():
         f.write("\n".join(results) + "\n\n")
 
     print(f"檢查完成，結果已保存到 {result_file}")
-
-
-    
-
-    st.code(driver.page_source)
