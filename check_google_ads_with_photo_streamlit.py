@@ -13,7 +13,6 @@ with st.echo():
     
     @st.cache_resource
     def get_driver():
-        print("Getting Driver")
         return webdriver.Chrome(
             service=Service(
                 ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
@@ -69,10 +68,10 @@ with st.echo():
         results.append(f"檢查目標網站: {site}\n")
 
         for keyword in keywords:
-            print(f"正在搜索目標網站 '{site}' 的關鍵字: {keyword}")
+            st.write(f"正在搜索目標網站 '{site}' 的關鍵字: {keyword}")
 
             for attempt in range(1, 7):  # 最多嘗試 6 次
-                print(f"  嘗試第 {attempt} 次...")
+                st.write(f"  嘗試第 {attempt} 次...")
                 driver.delete_all_cookies()  # 每次搜尋前清除 cookies 和快取
                 driver.get(base_url + keyword)
 
@@ -102,7 +101,7 @@ with st.echo():
                         driver.save_screenshot(screenshot_path)
 
                         results.append(f"    截圖保存位置: {screenshot_path}")
-                        print(f"    關鍵字 '{keyword}' 找到目標網站 {site}於Slot{_slot}-Pos{_pos}，截圖已保存到 {screenshot_path}")
+                        st.write(f"    關鍵字 '{keyword}' 找到目標網站 {site}於Slot{_slot}-Pos{_pos}，截圖已保存到 {screenshot_path}")
                         break
 
                 if found:
@@ -113,7 +112,7 @@ with st.echo():
             if not found:
                 results.append(f"  關鍵字: {keyword}")
                 results.append(f"    未找到廣告 (已嘗試 6 次)")
-                print(f"    關鍵字 '{keyword}' 未找到目標網站 {site} (已嘗試 6 次)")
+                st.write(f"    關鍵字 '{keyword}' 未找到目標網站 {site} (已嘗試 6 次)")
 
         results.append("")  # 每個網站結果之間加空行
     # 關閉瀏覽器
@@ -123,4 +122,4 @@ with st.echo():
     with open(result_file, "a", encoding="utf-8") as f:
         f.write("\n".join(results) + "\n\n")
 
-    print(f"檢查完成，結果已保存到 {result_file}")
+    st.write(f"檢查完成，結果已保存到 {result_file}")
