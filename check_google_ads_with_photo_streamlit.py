@@ -88,21 +88,12 @@ with st.echo():
                 # 等待頁面加載
                 time.sleep(2)
 
-                screenshot_path = os.path.join(
-                    screenshot_dir, f"{keyword.replace(' ', '_')}_mobile.png"
-                )
-                driver.save_screenshot(screenshot_path)
-
-                results.append(f"    截圖保存位置: {screenshot_path}")
-                st.write(f"    關鍵字 '{keyword}'，截圖已保存到 {screenshot_path}")
-
                 # 查找廣告區塊
                 ads = driver.find_elements(By.XPATH, "//div[@data-text-ad='1']")
                 found = False
                 #st.write(driver.page_source)
 
                 for ad in ads[:4]:  # 檢查前 4 個廣告
-                    st.write(ad)
                     _slot = ad.get_dom_attribute("data-ta-slot")
                     if _slot == 3:
                         results.append(f"  關鍵字: {keyword} 沒有出現於首四個廣告內")
@@ -122,7 +113,7 @@ with st.echo():
                             screenshot_dir, f"{site}_{_slot}{_pos}_{keyword.replace(' ', '_')}_mobile.png"
                         )
                         driver.save_screenshot(screenshot_path)
-
+                        st.download_button("Download", screenshot_path)
                         results.append(f"    截圖保存位置: {screenshot_path}")
                         st.write(f"    關鍵字 '{keyword}' 找到目標網站 {site}於Slot{_slot}-Pos{_pos}，截圖已保存到 {screenshot_path}")
                         break
