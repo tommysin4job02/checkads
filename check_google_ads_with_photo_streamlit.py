@@ -81,7 +81,7 @@ with st.echo():
             for attempt in range(1, 7):  # 最多嘗試 6 次
                 st.write(f"  嘗試第 {attempt} 次...")
                 driver.delete_all_cookies()  # 每次搜尋前清除 cookies 和快取
-                st.write(base_url + keyword)
+                #st.write(base_url + keyword)
 
                 driver.get(base_url + keyword)
 
