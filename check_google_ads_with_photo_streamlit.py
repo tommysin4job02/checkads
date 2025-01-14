@@ -94,7 +94,13 @@ with st.echo():
                     screenshot_dir, f"{keyword.replace(' ', '_')}_mobile.png"
                 )
                 driver.save_screenshot(screenshot_path)
-                st.download_button("Download", screenshot_path)
+                with open(screenshot_path, "rb") as file:
+                    st.download_button(
+                        label="Download",
+                        data=file,
+                        file_name=f"{keyword.replace(' ', '_')}_mobile.png",
+                        mime="image/png",
+                    )
                 results.append(f"    截圖保存位置: {screenshot_path}")
                 st.write(f"    關鍵字 '{keyword}' ，截圖已保存到 {screenshot_path}")
 
