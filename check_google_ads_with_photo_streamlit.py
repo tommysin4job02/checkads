@@ -89,6 +89,14 @@ with st.echo():
 
                 # 等待頁面加載
                 time.sleep(2)
+                
+                creenshot_path = os.path.join(
+                    screenshot_dir, f"{keyword.replace(' ', '_')}_mobile.png"
+                )
+                driver.save_screenshot(screenshot_path)
+                st.download_button("Download", screenshot_path)
+                results.append(f"    截圖保存位置: {screenshot_path}")
+                st.write(f"    關鍵字 '{keyword}' ，截圖已保存到 {screenshot_path}")
 
                 # 查找廣告區塊
                 ads = driver.find_elements(By.XPATH, "//div[@data-text-ad='1']")
