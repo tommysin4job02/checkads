@@ -95,11 +95,13 @@ with st.echo():
                 )
                 driver.save_screenshot(screenshot_path)
                 with open(screenshot_path, "rb") as file:
+                    st.image(file, caption=f"{keyword.replace(' ', '_')}_mobile.png")
                     st.download_button(
                         label="Download",
                         data=file,
                         file_name=f"{keyword.replace(' ', '_')}_mobile.png",
                         mime="image/png",
+                        key=f"{keyword.replace(' ', '_')}_mobile.png"
                     )
                 results.append(f"    截圖保存位置: {screenshot_path}")
                 st.write(f"    關鍵字 '{keyword}' ，截圖已保存到 {screenshot_path}")
