@@ -95,7 +95,7 @@ with st.echo():
                 )
                 driver.save_screenshot(screenshot_path)
                 with open(screenshot_path, "rb") as file:
-                    st.image(file, caption=f"{keyword.replace(' ', '_')}_mobile.png")
+                    st.image(screenshot_path, caption=f"{keyword.replace(' ', '_')}_mobile.png")
                     st.download_button(
                         label="Download",
                         data=file,
