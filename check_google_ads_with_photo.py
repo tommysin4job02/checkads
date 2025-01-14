@@ -17,6 +17,7 @@ def google_ads_check_mobile(site_keywords, screenshot_dir="screenshots", result_
     }
 
     # 瀏覽器配置
+    PROXY="148.66.6.214:80"
     chrome_options = Options()
     chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
     chrome_options.add_argument("--headless=new")  # 無頭模式
@@ -28,8 +29,10 @@ def google_ads_check_mobile(site_keywords, screenshot_dir="screenshots", result_
     chrome_options.add_argument("--no-sandbox")  # 避免某些環境權限問題
     chrome_options.add_argument("--disable-dev-shm-usage")  # 避免共享內存不足問題
     chrome_options.add_argument('lang=zh_TW.UTF-8')
+    chrome_options.add_argument('--proxy-server=%s' % PROXY)
     
     # Proxy Setup
+    """
     PROXY="148.66.6.214:80"
     webdriver.DesiredCapabilities.CHROME['proxy'] = {
         "httpProxy": PROXY,
@@ -40,7 +43,7 @@ def google_ads_check_mobile(site_keywords, screenshot_dir="screenshots", result_
     }
 
     webdriver.DesiredCapabilities.CHROME['acceptSslCerts']=True
-
+    """
     # 創建截圖文件夾
     if os.path.exists(screenshot_dir):
         shutil.rmtree(screenshot_dir)
