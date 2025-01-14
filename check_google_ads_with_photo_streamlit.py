@@ -25,7 +25,8 @@ with st.echo():
         chrome_options.add_argument("--disable-cache")  # 禁用瀏覽器快取
         chrome_options.add_argument("--no-sandbox")  # 避免某些環境權限問題
         chrome_options.add_argument("--disable-dev-shm-usage")  # 避免共享內存不足問題
-        chrome_options.add_argument('lang=zh_TW.UTF-8')
+        chrome_options.add_argument('--lang=zh_TW.UTF-8')
+    
         # Proxy Setup
         webdriver.DesiredCapabilities.CHROME['proxy'] = {
             "httpProxy": PROXY,
@@ -34,8 +35,6 @@ with st.echo():
             "proxyType": "MANUAL",
 
         }
-
-        webdriver.DesiredCapabilities.CHROME['acceptSslCerts']=True
 
         return webdriver.Chrome(
             options=chrome_options,
@@ -91,13 +90,21 @@ with st.echo():
                 # 等待頁面加載
                 time.sleep(2)
 
+                screenshot_path = os.path.join(
+                    screenshot_dir, f"{keyword.replace(' ', '_')}_mobile.png"
+                )
+                driver.save_screenshot(screenshot_path)
+
+                results.append(f"    截圖保存位置: {screenshot_path}")
+                st.write(f"    關鍵字 '{keyword}'，截圖已保存到 {screenshot_path}")
+
                 # 查找廣告區塊
                 ads = driver.find_elements(By.XPATH, "//div[@data-text-ad='1']")
                 found = False
                 #st.write(driver.page_source)
 
                 for ad in ads[:4]:  # 檢查前 4 個廣告
-                    #st.write(ad)
+                    st.write(ad)
                     _slot = ad.get_dom_attribute("data-ta-slot")
                     if _slot == 3:
                         results.append(f"  關鍵字: {keyword} 沒有出現於首四個廣告內")
