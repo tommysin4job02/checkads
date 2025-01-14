@@ -24,6 +24,8 @@ with st.echo():
         chrome_options.add_argument("--no-sandbox")  # 避免某些環境權限問題
         chrome_options.add_argument("--disable-dev-shm-usage")  # 避免共享內存不足問題
         chrome_options.add_argument('--lang=zh_TW.UTF-8')
+        chrome_options.add_argument('--intl.accept_languages=zh_TW')
+        chrome_options.add_argument('--intl.selected_languages=zh_TW')
     
         # Proxy Setup
         webdriver.DesiredCapabilities.CHROME['proxy'] = {
