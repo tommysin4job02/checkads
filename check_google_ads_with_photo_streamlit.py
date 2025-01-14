@@ -101,7 +101,7 @@ with st.echo():
                         data=file,
                         file_name=f"{keyword.replace(' ', '_')}_mobile.png",
                         mime="image/png",
-                        key=f"{keyword.replace(' ', '_')}_mobile.png"
+                        key=f"{keyword.replace(' ', '_')}_{time.time()}_mobile.png"
                     )
                 results.append(f"    截圖保存位置: {screenshot_path}")
                 st.write(f"    關鍵字 '{keyword}' ，截圖已保存到 {screenshot_path}")
