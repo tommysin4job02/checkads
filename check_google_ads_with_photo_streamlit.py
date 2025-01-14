@@ -91,11 +91,11 @@ with st.echo():
                 found = False
 
                 for ad in ads[:4]:  # 檢查前 4 個廣告
-                    st.write(ad)
+                    #st.write(ad)
                     _slot = ad.get_dom_attribute("data-ta-slot")
                     if _slot == 3:
                         results.append(f"  關鍵字: {keyword} 沒有出現於首四個廣告內")
-                        print(f"  關鍵字: {keyword} 沒有出現於首四個廣告內")
+                        st.write(f"  關鍵字: {keyword} 沒有出現於首四個廣告內")
                     _pos = ad.get_dom_attribute("data-ta-slot-pos")
                     if site in ad.text:
                         found = True
