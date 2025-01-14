@@ -90,7 +90,7 @@ with st.echo():
                 # 等待頁面加載
                 time.sleep(2)
                 
-                creenshot_path = os.path.join(
+                screenshot_path = os.path.join(
                     screenshot_dir, f"{keyword.replace(' ', '_')}_mobile.png"
                 )
                 driver.save_screenshot(screenshot_path)
