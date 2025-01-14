@@ -1,0 +1,86 @@
+執行時間: 2025-01-14 15:48:14
+
+檢查目標網站: www.paradise.com.hk
+
+  關鍵字: 殯儀
+    找到廣告於Slot0-Pos3 (嘗試第 1 次)
+    截圖保存位置: screenshots/www.paradise.com.hk_03_殯儀_mobile.png
+  關鍵字: 土葬 沒有出現於首四個廣告內
+  關鍵字: 土葬
+    未找到廣告 (已嘗試 6 次)
+  關鍵字: 安息禮拜
+    找到廣告於Slot0-Pos1 (嘗試第 1 次)
+    截圖保存位置: screenshots/www.paradise.com.hk_01_安息禮拜_mobile.png
+  關鍵字: 綠色殯葬 沒有出現於首四個廣告內
+  關鍵字: 綠色殯葬
+    找到廣告於Slot3-Pos1 (嘗試第 1 次)
+    截圖保存位置: screenshots/www.paradise.com.hk_31_綠色殯葬_mobile.png
+  關鍵字: 遺體出口
+    找到廣告於Slot0-Pos2 (嘗試第 1 次)
+    截圖保存位置: screenshots/www.paradise.com.hk_02_遺體出口_mobile.png
+  關鍵字: 天主教喪禮 沒有出現於首四個廣告內
+  關鍵字: 天主教喪禮
+    未找到廣告 (已嘗試 6 次)
+  關鍵字: 喪禮
+    找到廣告於Slot0-Pos1 (嘗試第 3 次)
+    截圖保存位置: screenshots/www.paradise.com.hk_01_喪禮_mobile.png
+
+檢查目標網站: eternalhse.hk
+
+  關鍵字: 殯儀
+    找到廣告於Slot0-Pos2 (嘗試第 1 次)
+    截圖保存位置: screenshots/eternalhse.hk_02_殯儀_mobile.png
+  關鍵字: 院出
+    找到廣告於Slot0-Pos1 (嘗試第 5 次)
+    截圖保存位置: screenshots/eternalhse.hk_01_院出_mobile.png
+  關鍵字: 殯儀收費 沒有出現於首四個廣告內
+  關鍵字: 殯儀收費 沒有出現於首四個廣告內
+  關鍵字: 殯儀收費
+    找到廣告於Slot3-Pos2 (嘗試第 2 次)
+    截圖保存位置: screenshots/eternalhse.hk_32_殯儀收費_mobile.png
+  關鍵字: 道教喪禮
+    未找到廣告 (已嘗試 6 次)
+  關鍵字: 綠色殯葬
+    未找到廣告 (已嘗試 6 次)
+  關鍵字: 打齋 沒有出現於首四個廣告內
+  關鍵字: 打齋
+    找到廣告於Slot0-Pos2 (嘗試第 2 次)
+    截圖保存位置: screenshots/eternalhse.hk_02_打齋_mobile.png
+  關鍵字: 佛教喪禮 沒有出現於首四個廣告內
+  關鍵字: 佛教喪禮
+    找到廣告於Slot3-Pos1 (嘗試第 1 次)
+    截圖保存位置: screenshots/eternalhse.hk_31_佛教喪禮_mobile.png
+  關鍵字: 喪禮
+    未找到廣告 (已嘗試 6 次)
+
+檢查目標網站: gloryfuneral.com.hk
+
+  關鍵字: 殯儀服務
+    找到廣告於Slot0-Pos4 (嘗試第 3 次)
+    截圖保存位置: screenshots/gloryfuneral.com.hk_04_殯儀服務_mobile.png
+  關鍵字: 天主教喪禮 沒有出現於首四個廣告內
+  關鍵字: 天主教喪禮
+    找到廣告於Slot3-Pos1 (嘗試第 4 次)
+    截圖保存位置: screenshots/gloryfuneral.com.hk_31_天主教喪禮_mobile.png
+  關鍵字: 土葬
+    未找到廣告 (已嘗試 6 次)
+  關鍵字: 打齋
+    找到廣告於Slot0-Pos1 (嘗試第 1 次)
+    截圖保存位置: screenshots/gloryfuneral.com.hk_01_打齋_mobile.png
+  關鍵字: 院出
+    找到廣告於Slot0-Pos2 (嘗試第 4 次)
+    截圖保存位置: screenshots/gloryfuneral.com.hk_02_院出_mobile.png
+  關鍵字: 遺體出口
+    找到廣告於Slot0-Pos2 (嘗試第 1 次)
+    截圖保存位置: screenshots/gloryfuneral.com.hk_02_遺體出口_mobile.png
+  關鍵字: 基督教喪禮
+    找到廣告於Slot0-Pos2 (嘗試第 3 次)
+    截圖保存位置: screenshots/gloryfuneral.com.hk_02_基督教喪禮_mobile.png
+
+檢查目標網站: memorialhse.com.hk
+
+  關鍵字: 殯儀服務
+    找到廣告於Slot0-Pos4 (嘗試第 1 次)
+    截圖保存位置: screenshots/memorialhse.com.hk_04_殯儀服務_mobile.png
+
+

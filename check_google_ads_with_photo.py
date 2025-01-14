@@ -28,12 +28,9 @@ def google_ads_check_mobile(site_keywords, screenshot_dir="screenshots", result_
     chrome_options.add_argument("--disable-cache")  # 禁用瀏覽器快取
     chrome_options.add_argument("--no-sandbox")  # 避免某些環境權限問題
     chrome_options.add_argument("--disable-dev-shm-usage")  # 避免共享內存不足問題
-    chrome_options.add_argument('lang=zh_TW.UTF-8')
-    chrome_options.add_argument('--proxy-server=%s' % PROXY)
+    chrome_options.add_argument('--lang=zh_TW.UTF-8')
     
     # Proxy Setup
-    """
-    PROXY="148.66.6.214:80"
     webdriver.DesiredCapabilities.CHROME['proxy'] = {
         "httpProxy": PROXY,
         "ftpProxy": PROXY,
@@ -43,7 +40,7 @@ def google_ads_check_mobile(site_keywords, screenshot_dir="screenshots", result_
     }
 
     webdriver.DesiredCapabilities.CHROME['acceptSslCerts']=True
-    """
+    
     # 創建截圖文件夾
     if os.path.exists(screenshot_dir):
         shutil.rmtree(screenshot_dir)
@@ -52,7 +49,7 @@ def google_ads_check_mobile(site_keywords, screenshot_dir="screenshots", result_
 
     # 啟動瀏覽器
     driver = webdriver.Chrome(options=chrome_options)
-    base_url = "https://www.google.com/search?gl=hk&q="
+    base_url = "https://www.google.com/search?q="
 
     # 記錄檢查結果
     results = []
