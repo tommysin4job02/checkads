@@ -19,7 +19,7 @@ def google_ads_check_mobile(site_keywords, screenshot_dir="screenshots", result_
     # 瀏覽器配置
     chrome_options = Options()
     chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
-    chrome_options.add_argument("--headless")  # 無頭模式
+    chrome_options.add_argument("--headless=new")  # 無頭模式
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--window-size=375,812")  # iPhone X 分辨率
     chrome_options.add_argument("--disable-application-cache")  # 禁用應用程序緩存
@@ -27,7 +27,19 @@ def google_ads_check_mobile(site_keywords, screenshot_dir="screenshots", result_
     chrome_options.add_argument("--disable-cache")  # 禁用瀏覽器快取
     chrome_options.add_argument("--no-sandbox")  # 避免某些環境權限問題
     chrome_options.add_argument("--disable-dev-shm-usage")  # 避免共享內存不足問題
-    chrome_service = Service("/Users/user/Desktop/chromedriver")  # 替換為 ChromeDriver 的實際路徑
+    chrome_options.add_argument('lang=zh_TW.UTF-8')
+    
+    # Proxy Setup
+    PROXY="148.66.6.214:80"
+    webdriver.DesiredCapabilities.CHROME['proxy'] = {
+        "httpProxy": PROXY,
+        "ftpProxy": PROXY,
+        "sslProxy": PROXY,
+        "proxyType": "MANUAL",
+
+    }
+
+    webdriver.DesiredCapabilities.CHROME['acceptSslCerts']=True
 
     # 創建截圖文件夾
     if os.path.exists(screenshot_dir):
@@ -64,7 +76,7 @@ def google_ads_check_mobile(site_keywords, screenshot_dir="screenshots", result_
 
                 for ad in ads[:4]:  # 檢查前 4 個廣告
                     _slot = ad.get_dom_attribute("data-ta-slot")
-                    if _slot == 3:
+                    if _slot == "3":
                         results.append(f"  關鍵字: {keyword} 沒有出現於首四個廣告內")
                         print(f"  關鍵字: {keyword} 沒有出現於首四個廣告內")
                     _pos = ad.get_dom_attribute("data-ta-slot-pos")

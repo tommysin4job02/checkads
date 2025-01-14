@@ -1,10 +1,11 @@
+# -*- coding: UTF-8 -*-
 import streamlit as st
 with st.echo():
+    from selenium import webdriver
     from selenium import webdriver
     from selenium.webdriver.chrome.options import Options
     from selenium.webdriver.chrome.service import Service
     from webdriver_manager.chrome import ChromeDriverManager
-    from webdriver_manager.core.os_manager import ChromeType
     from selenium.webdriver.common.by import By
     from datetime import datetime
     import time
@@ -13,22 +14,27 @@ with st.echo():
     
     @st.cache_resource
     def get_driver():
+        # 瀏覽器配置
+        PROXY="148.66.6.214:80"
+        chrome_options = Options()
+        chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+        chrome_options.add_argument("--headless")  # 無頭模式
+        chrome_options.add_argument("--disable-gpu")
+        chrome_options.add_argument("--window-size=375,812")  # iPhone X 分辨率
+        chrome_options.add_argument("--disable-application-cache")  # 禁用應用程序緩存
+        chrome_options.add_argument("--incognito")  # 無痕模式
+        chrome_options.add_argument("--disable-cache")  # 禁用瀏覽器快取
+        chrome_options.add_argument("--no-sandbox")  # 避免某些環境權限問題
+        chrome_options.add_argument("--disable-dev-shm-usage")  # 避免共享內存不足問題
+        chrome_options.add_argument('lang=zh_TW.UTF-8')
+        chrome_options.add_argument('--proxy-server=%s' % PROXY)
+
         return webdriver.Chrome(
-            service=Service(
-                ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
-            ),
             options=chrome_options,
         )
     # 手機模擬配置
     mobile_emulation = {
         "deviceName": "iPhone X"  # 模擬 iPhone X 設備
-    }
-    
-    # 模擬位置
-    params = {
-        "latitude": 22.32706408602771,
-        "longitude": 114.17102541353952,
-        "accuracy": 100
     }
     
     # 檔案儲存設置
@@ -40,19 +46,9 @@ with st.echo():
         shutil.rmtree("screenshots")
     if os.path.exists("result.txt"):
         os.remove("result.txt")
+    os.makedirs(screenshot_dir, exist_ok=True)
     
-    # 瀏覽器配置
-    chrome_options = Options()
-    chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
-    chrome_options.add_argument("--headless")  # 無頭模式
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--window-size=375,812")  # iPhone X 分辨率
-    chrome_options.add_argument("--disable-application-cache")  # 禁用應用程序緩存
-    chrome_options.add_argument("--incognito")  # 無痕模式
-    chrome_options.add_argument("--disable-cache")  # 禁用瀏覽器快取
-    chrome_options.add_argument("--no-sandbox")  # 避免某些環境權限問題
-    chrome_options.add_argument("--disable-dev-shm-usage")  # 避免共享內存不足問題
-
+    
     # 使用範例：每個網站的關鍵字列表
     site_keywords = {
         "www.paradise.com.hk": ["殯儀", "土葬","安息禮拜","綠色殯葬","遺體出口","天主教喪禮","喪禮"],
@@ -63,7 +59,6 @@ with st.echo():
     
     # 啟動瀏覽器
     driver = get_driver()
-    driver.execute_cdp_cmd("Page.setGeolocationOverride", params)
     base_url = "https://www.google.com/search?gl=hk&q="
     driver.get(base_url)
     
@@ -81,17 +76,27 @@ with st.echo():
             for attempt in range(1, 7):  # 最多嘗試 6 次
                 st.write(f"  嘗試第 {attempt} 次...")
                 driver.delete_all_cookies()  # 每次搜尋前清除 cookies 和快取
+                st.write(base_url + keyword)
+
                 driver.get(base_url + keyword)
 
                 # 等待頁面加載
-                time.sleep(2)
+                time.sleep(5)
+                screenshot_path = os.path.join(
+                    screenshot_dir, f"{keyword.replace(' ', '_')}_mobile.png"
+                )
+                driver.save_screenshot(screenshot_path)
+
+                results.append(f"    截圖保存位置: {screenshot_path}")
+                st.write(f"    關鍵字 '{keyword}'，截圖已保存到 {screenshot_path}")
 
                 # 查找廣告區塊
                 ads = driver.find_elements(By.XPATH, "//div[@data-text-ad='1']")
                 found = False
+                #st.write(driver.page_source)
 
                 for ad in ads[:4]:  # 檢查前 4 個廣告
-                    #st.write(ad)
+                    st.write(ad)
                     _slot = ad.get_dom_attribute("data-ta-slot")
                     if _slot == 3:
                         results.append(f"  關鍵字: {keyword} 沒有出現於首四個廣告內")
