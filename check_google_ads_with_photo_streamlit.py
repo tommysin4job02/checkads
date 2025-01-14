@@ -116,7 +116,7 @@ with st.echo():
                             screenshot_dir, f"{site}_{_slot}{_pos}_{keyword.replace(' ', '_')}_mobile.png"
                         )
                         driver.save_screenshot(screenshot_path)
-                        st.download_button('Download', driver.save_screenshot(screenshot_path))
+                        st.download_button('Download', screenshot_path)
 
                         results.append(f"    截圖保存位置: {screenshot_path}")
                         st.write(f"    關鍵字 '{keyword}' 找到目標網站 {site}於Slot{_slot}-Pos{_pos}，截圖已保存到 {screenshot_path}")
