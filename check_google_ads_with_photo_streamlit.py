@@ -26,15 +26,17 @@ with st.echo():
         chrome_options.add_argument('--lang=zh_TW.UTF-8')
     
         # Proxy Setup
-        webdriver.DesiredCapabilities.EDGE['proxy'] = {
+        webdriver.DesiredCapabilities.CHROME['proxy'] = {
             "httpProxy": PROXY,
             "ftpProxy": PROXY,
             "sslProxy": PROXY,
             #"proxyType": "MANUAL",
 
         }
+        
+        webdriver.DesiredCapabilities.CHROME['acceptSslCerts']=True
 
-        return webdriver.Edge(
+        return webdriver.Chrome(
             options=chrome_options,
         )
     # 手機模擬配置
